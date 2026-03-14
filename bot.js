@@ -1,7 +1,10 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 const { GoogleSpreadsheet } = require("google-spreadsheet");
 const { JWT } = require("google-auth-library");
-const creds = require("./credentials.json");
+const creds = {
+  client_email: process.env.GOOGLE_CLIENT_EMAIL,
+  private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n")
+};
 
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
